@@ -1,13 +1,10 @@
-# Aplicación de Redirección a PaaS
+# IP API
 
-Esta es una aplicación web simple desarrollada con Node.js y Express que proporciona botones para redirigir a diferentes plataformas PaaS (Platform as a Service).
+Esta es una API simple desarrollada con Node.js y Express que devuelve la dirección IP del cliente que realiza la solicitud, junto con información adicional relevante.
 
-## Plataformas incluidas
+## Descripción
 
-- Heroku
-- Railway
-- DigitalOcean
-- Vercel
+La API detecta automáticamente la dirección IP del cliente a partir de varios encabezados HTTP y devuelve esta información en formato JSON. Es útil para servicios que necesitan conocer la IP del usuario final.
 
 ## Requisitos previos
 
@@ -18,8 +15,8 @@ Esta es una aplicación web simple desarrollada con Node.js y Express que propor
 
 1. Clona este repositorio:
    ```
-   git clone https://github.com/tu-usuario/paas-redirect-app.git
-   cd paas-redirect-app
+   git clone https://github.com/tu-usuario/ip-api.git
+   cd ip-api
    ```
 
 2. Instala las dependencias:
@@ -32,9 +29,9 @@ Esta es una aplicación web simple desarrollada con Node.js y Express que propor
    npm start
    ```
 
-4. Abre tu navegador y visita:
+4. El servidor se iniciará en el puerto 3001 por defecto. Puedes acceder a la API en:
    ```
-   http://localhost:3000
+   http://localhost:3001/api/ip
    ```
 
 ## Desarrollo
@@ -48,20 +45,47 @@ npm run dev
 
 ```
 .
-├── app.js                # Archivo principal de la aplicación
-├── package.json          # Configuración y dependencias
-├── public/               # Archivos estáticos
-│   ├── css/              # Hojas de estilo
-│   │   └── styles.css    
-│   ├── js/               # JavaScript del cliente
-│   │   └── script.js     
-│   └── index.html        # Página principal
+│── app.js                # Archivo principal de la aplicación
+│── package.json          # Configuración y dependencias
+│── .gitignore            # Configuración de Git
 └── README.md             # Documentación
 ```
 
+## Endpoints
+
+### GET /api/ip
+
+Este endpoint devuelve la dirección IP del cliente que realiza la solicitud, junto con información adicional.
+
+**Respuesta:**
+```json
+{
+  "success": true,
+  "ip": "192.168.1.1",
+  "timestamp": "2025-05-14T00:12:33-05:00",
+  "headers": { "user-agent": "..." },
+  "method": "GET",
+  "path": "/api/ip"
+}
+```
+
+### GET /
+
+Ruta principal que redirecciona al endpoint de IP.
+
+## Tecnologías
+
+- Node.js
+- Express.js
+- CORS (para permitir solicitudes entre dominios)
+
+## Variables de entorno
+
+- `PORT`: Puerto en el que se ejecutará el servidor (predeterminado: 3001)
+
 ## Despliegue
 
-Esta aplicación está lista para ser desplegada en plataformas como Heroku, Vercel, Netlify o cualquier otra plataforma que soporte Node.js.
+Esta API está lista para ser desplegada en plataformas como Heroku, Vercel, Netlify, DigitalOcean o cualquier otra plataforma que soporte Node.js.
 
 ## Licencia
 
