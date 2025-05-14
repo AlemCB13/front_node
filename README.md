@@ -5,9 +5,9 @@ Esta es una aplicación web simple desarrollada con Node.js y Express que propor
 ## Plataformas incluidas
 
 - Heroku
-- AWS Elastic Beanstalk
-- Azure App Service
-- Google App Engine
+- Railway
+- DigitalOcean
+- Vercel
 
 ## Requisitos previos
 
