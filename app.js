@@ -3,7 +3,7 @@ const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Middleware para habilitar CORS
+// Middleware para habilitar CORS but in inglish
 app.use(cors());
 
 // Middleware para procesar JSON

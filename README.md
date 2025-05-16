@@ -1,68 +1,73 @@
 # IP API
 
-Esta es una API simple desarrollada con Node.js y Express que devuelve la dirección IP del cliente que realiza la solicitud, junto con información adicional relevante.
+A simple API built with Node.js and Express that returns the IP address of the client making the request, along with additional relevant information.
 
-## Descripción
+## Description
 
-La API detecta automáticamente la dirección IP del cliente a partir de varios encabezados HTTP y devuelve esta información en formato JSON. Es útil para servicios que necesitan conocer la IP del usuario final.
+The API automatically detects the client's IP address from various HTTP headers and returns this information in JSON format. It's useful for services that need to know the end user's IP address.
 
-## Requisitos previos
+## Prerequisites
 
-- Node.js (versión 14 o superior)
-- npm (gestor de paquetes de Node.js)
+- Node.js (version 14 or higher)
+- npm (Node.js package manager)
 
-## Instalación
+## Installation
 
-1. Clona este repositorio:
+1. Clone this repository:
    ```
-   git clone https://github.com/tu-usuario/ip-api.git
+   git clone https://github.com/your-username/ip-api.git
    cd ip-api
    ```
 
-2. Instala las dependencias:
+2. Install dependencies:
    ```
    npm install
    ```
 
-3. Inicia la aplicación:
+3. Start the application:
    ```
    npm start
    ```
 
-4. El servidor se iniciará en el puerto 3001 por defecto. Puedes acceder a la API en:
+4. The server will start on port 3000 by default. You can access the API at:
    ```
-   http://localhost:3001/api/ip
+   http://localhost:3000/api/ip
    ```
 
-## Desarrollo
+## Development
 
-Para ejecutar la aplicación en modo desarrollo con recarga automática:
+To run the application in development mode with automatic reloading:
 ```
 npm run dev
 ```
 
-## Estructura del proyecto
+## Project Structure
 
 ```
 .
-│── app.js                # Archivo principal de la aplicación
-│── package.json          # Configuración y dependencias
-│── .gitignore            # Configuración de Git
-└── README.md             # Documentación
+│── app.js                # Main application file
+│── package.json          # Dependencies and configuration
+│── Dockerfile            # Docker container configuration
+│── vercel.json           # Vercel deployment configuration
+│── .github/              # GitHub configuration
+│   └── workflows/        # GitHub Actions workflows
+│       └── main.yml      # CI/CD pipeline configuration
+│── .gitignore            # Git ignore configuration
+└── README.md             # Documentation
 ```
 
 ## Endpoints
 
 ### GET /api/ip
 
-Este endpoint devuelve la dirección IP del cliente que realiza la solicitud, junto con información adicional.
+This endpoint returns the IP address of the client making the request, along with additional information.
 
-**Respuesta:**
+**Response:**
 ```json
 {
   "success": true,
   "ip": "192.168.1.1",
-  "timestamp": "2025-05-14T00:12:33-05:00",
+  "timestamp": "2025-05-14T00:30:30-05:00",
   "headers": { "user-agent": "..." },
   "method": "GET",
   "path": "/api/ip"
@@ -71,22 +76,42 @@ Este endpoint devuelve la dirección IP del cliente que realiza la solicitud, ju
 
 ### GET /
 
-Ruta principal que redirecciona al endpoint de IP.
+Main route that redirects to the IP endpoint.
 
-## Tecnologías
+## Technologies
 
 - Node.js
 - Express.js
-- CORS (para permitir solicitudes entre dominios)
+- CORS (to allow cross-domain requests)
 
-## Variables de entorno
+## Environment Variables
 
-- `PORT`: Puerto en el que se ejecutará el servidor (predeterminado: 3001)
+- `PORT`: Port on which the server will run (default: 3000)
 
-## Despliegue
+## Deployment
 
-Esta API está lista para ser desplegada en plataformas como Heroku, Vercel, Netlify, DigitalOcean o cualquier otra plataforma que soporte Node.js.
+### Vercel Deployment
 
-## Licencia
+This API is configured for deployment on Vercel using the included `vercel.json` file. The deployment is automated through GitHub Actions when you push to the main/master branch.
 
-Este proyecto está bajo la Licencia MIT. Ver el archivo LICENSE para más detalles.
+### Docker Deployment
+
+You can also deploy this API using Docker:
+
+```
+docker build -t ip-api .
+docker run -p 3000:3000 ip-api
+```
+
+### GitHub Actions CI/CD
+
+The included workflow file at `.github/workflows/main.yml` automates testing and deployment to Vercel.
+
+**Required GitHub Secrets:**
+- `VERCEL_TOKEN`
+- `VERCEL_ORG_ID`
+- `VERCEL_PROJECT_ID`
+
+## License
+
+This project is licensed under the MIT License. See the LICENSE file for details.
